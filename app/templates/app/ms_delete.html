@@ -1,0 +1,10 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+  <h1>Edit Sport</h1>
+     <form action="{% url 'ms_delete' object.pk %}" method="post">
+        {% csrf_token %}
+        <p>Are you sure you want to delete "{{sport.sport_name}}" ?</p>
+        <input type="submit" value="Confirm">
+     </form>
+{% endblock content %}

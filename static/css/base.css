@@ -1,0 +1,20 @@
+header {
+    background-color: #333; /* Dark background */
+    padding: 10px 20px; /* Padding for spacing */
+    display: flex; /* Flexbox for horizontal layout */
+    justify-content: space-around; /* Space between links */
+    align-items: center; /* Center vertically */
+}
+
+header a {
+    color: white; /* White text */
+    text-decoration: none; /* Remove underline */
+    font-size: 18px; /* Font size */
+    padding: 8px 12px; /* Add padding around links */
+    border-radius: 4px; /* Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+header a:hover {
+    background-color: #575757; /* Change background on hover */
+}

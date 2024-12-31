@@ -1,0 +1,12 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+
+   <div class="sport-entry"> 
+      <h2><a href="">{{sport.sport_name}}</a></h2>
+      <p>Description: {{sport.description}}</p>
+    <p>Rules: {{sport.rules}}</p>
+   </div>
+   <a href="{% url 'ms_update' sport.pk %}">Edit Sport</a>
+   <a href="{% url 'ms_delete' sport.pk %}">Delete Sport</a>
+{% endblock content %}

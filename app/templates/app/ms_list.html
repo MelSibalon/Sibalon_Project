@@ -1,0 +1,11 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+
+   {% for sport in sports %}
+   <div class="sport-entry"> 
+    <h2><a href="{% url 'ms_detail' sport.pk%}">{{sport.sport_name}}</a></h2>
+   </div>
+   {% endfor %}
+   <a href="{% url 'ms_create' %}">+ Enter Sports Here</a>
+{% endblock content %}
