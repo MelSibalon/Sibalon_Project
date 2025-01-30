@@ -1,0 +1,10 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+  <h1>New Team</h1>
+     <form action="{% url 'users_create' %}" method="post" class="form-container">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Save">
+     </form>
+{% endblock content %}

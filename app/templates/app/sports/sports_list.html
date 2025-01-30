@@ -1,0 +1,39 @@
+
+{% load static %}
+{% block content %}
+
+<h1>SPORTS MANAGEMENT</h1>
+
+<h3>Total Sports: {{total_sports}}</h3>
+   <table>
+    <thead>
+        <tr>
+            <th>Sport Name</th>
+            <th>Description</th>
+            <th>Rules</th>
+            <th>History</th>
+            <th>Action</th>
+
+        </tr>
+    </thead>
+    <tbody>
+    {% for sport in sports %}
+        <tr>
+            <td>{{sport.sport_name}}</td>
+            <td>{{sport.description}}</td>
+            <td>{{sport.rules}}</td>
+            <td>{{sport.history}}</td>
+            
+            <td><a href="{% url 'sports_detail' sport.pk%}">View</a>
+                {% if user.role == 'admin' or user.is_superuser%}
+          <a href="{% url 'sports_update' sport.pk%}">Update</a>
+          <a href="{% url 'sports_delete' sport.pk%}">Delete</a>
+            </td>
+            {% endif %}
+        </tr>
+    {% endfor %}
+    </tbody>
+   </table>
+
+   <a href="{% url 'sports_create' %}">+ Enter Sports Here</a>
+{% endblock content %}

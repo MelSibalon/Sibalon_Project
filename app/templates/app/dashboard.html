@@ -1,0 +1,59 @@
+{% extends "app/base.html" %}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+
+{% block content %}
+<div class="sidebar">
+    <div class="user-info">
+        <h2>Welcome {{ user.username }}</h2>
+    </div>
+
+    {% if user.role == 'admin' or user.is_superuser%}
+        <a href="{% url 'sports' %}" class="sidebar-link">Manage Sports</a>
+        <a href="{% url 'users' %}" class="sidebar-link">Manage Users</a>
+        <a href="{% url 'leagues' %}" class="sidebar-link">Manage Leagues</a>
+        <a href="{% url 'teams' %}" class="sidebar-link">Manage Teams</a>
+        <a href="{% url 'positions' %}" class="sidebar-link">Manage Sport Position</a>
+        <a href="{% url 'matches' %}" class="sidebar-link">View Matches</a>
+        {% elif user.role == 'player' %}
+        <a href="{% url 'leagues' %}" class="sidebar-link">View Leagues</a>
+        <a href="{% url 'teams' %}" class="sidebar-link">View Teams</a>
+        <a href="{% url 'matches' %}" class="sidebar-link">View Matches</a>
+        {% elif user.role == 'coach' %}
+        <a href="{% url 'leagues' %}" class="sidebar-link">View Leagues</a>
+        <a href="{% url 'teams' %}" class="sidebar-link">View Teams</a>
+        <a href="{% url 'matches' %}" class="sidebar-link">View Matches</a>
+        {% endif %}
+    
+{% if user.is_authenticated%}
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit"  class="logout-button">Log out</button>
+    </form>
+{% endif %}
+</div>
+
+<div class="main-content">
+    <h2>Dashboard</h2>
+
+    <div class="stats-container">
+        <h1>WELCOME {{user.role }} {{ user.username}}</h1>
+    </div>
+    <br><br>
+    {% if user.role == 'admin' or user.is_superuser%}
+
+    <h1>Quick Access Button</h1>
+    <div class="actions-container">
+        <a href="{% url 'sports_create' %}">ADD SPORTS</a>
+        <a href="{% url 'teams_create' %}">ADD TEAM</a>
+        <a href="{% url 'matches_create' %}">ADD MATCHES</a>
+        <a href="{% url 'leagues_create' %}">ADD LEAGUE</a>
+        <a href="{% url 'position_create' %}">ADD SPORT RELATED POSITION</a>
+    </div>
+    {% endif %}
+
+</div>
+
+<script src="{% static 'js/base.js' %}"></script>
+{% endblock %}

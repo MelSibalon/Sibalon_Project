@@ -1,0 +1,12 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+  
+
+<form action="{% url 'leagues_delete' %}" method="post" class="form-container">
+     <h1>Delete League</h1>
+   {% csrf_token %}
+   <p>Are you sure you want to delete?</p>
+   <input type="submit" value="Confirm">
+</form>
+{% endblock content %}

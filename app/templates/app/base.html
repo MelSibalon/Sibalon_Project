@@ -5,13 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
+    <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/table.css' %}">
+    <link rel="stylesheet" href="{% static 'css/form.css' %}">
+    <link rel="stylesheet" href="{% static 'css/details.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <title>MS SportGanizer</title>
+    <link rel="icon" href="{% static 'images/favicon.ico'%}" type="image/x-icon">
 </head>
 <body>
+   
     {% include 'app/navbar.html' %}
-    {% block content %}
 
+    {% block content %}
+    {% include 'app/dashboard.html' %} <!-- Ensure this is the only inclusion of the dashboard -->
     {% endblock content %}
     <script src="{% static 'js/base.js' %}"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr">
+        flatpickr("#id_date", {
+    enableTime: true,
+    dateFormat: "Y-m-d H:i",
+});
+
+    </script>
+
 </body>
 </html>

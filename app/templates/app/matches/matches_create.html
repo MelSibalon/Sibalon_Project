@@ -1,0 +1,48 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+<div class="match-form-container">
+    <h1>Matches</h1>
+    <form method="POST">
+        {% csrf_token %}
+        
+        <div class="form-row">
+            <div class="form-group">
+                <label for="id_league">League</label>
+                {{ form.league }}  <!-- League dropdown -->
+            </div>
+    
+            <div class="form-group">
+                <label for="id_sport">Sport</label>
+                {{ form.sport }}  <!-- Sport dropdown -->
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="id_team1">Team 1</label>
+                {{ form.team1 }}  <!-- Team 1 dropdown -->
+            </div>
+    
+            <div class="form-group">
+                <label for="id_team2">Team 2</label>
+                {{ form.team2 }}  <!-- Team 2 dropdown -->
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="id_date">Date</label>
+                <input type="datetime-local" name="date" id="id_date" class="form-control"> <!-- Date picker -->
+            </div>
+    
+            <div class="form-group">
+                <label for="id_location">Location</label>
+                {{ form.location }}  <!-- Location text input -->
+            </div>
+        </div>
+    
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
+{% endblock content %}

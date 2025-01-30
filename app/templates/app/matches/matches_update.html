@@ -1,0 +1,49 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+<h1>Update Match</h1>
+<form method="post">
+    {% csrf_token %}
+    <div>
+        <label for="league">League:</label>
+        <select name="league" id="league">
+            {% for league in leagues %}
+                <option value="{{ league.id }}">{{ league.league_name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <label for="team1">Team 1:</label>
+        <select name="team1" id="team1">
+            {% for team in teams %}
+                <option value="{{ team.id }}">{{ team.team_name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <label for="team2">Team 2:</label>
+        <select name="team2" id="team2">
+            {% for team in teams %}
+                <option value="{{ team.id }}">{{ team.team_name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <label for="sport">Sport:</label>
+        <select name="sport" id="sport">
+            {% for sport in sports %}
+                <option value="{{ sport.id }}">{{ sport.sport_name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <label for="date">Date:</label>
+        <input type="datetime-local" name="date" id="date" required>
+    </div>
+    <div>
+        <label for="location">Location:</label>
+        <input type="text" name="location" id="location" required>
+    </div>
+    <button type="submit">Update Match</button>
+</form>
+{% endblock content %}

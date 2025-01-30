@@ -1,0 +1,127 @@
+{% load static %}
+{% block content %}
+<h1>USER MANAGEMENT</h1>
+
+<!-- ALL USERS TABLE -->
+{% if user.role == 'admin' or user.is_superuser%}
+<h2>All Users</h2>
+<h3>Total Users: {{ total_users }}</h3>
+<table id="all-users-table">
+    <thead>
+        <tr>
+            <th>User ID</th>
+            <th>Username</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Date Joined</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+            {% if user.role != 'admin' %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.first_name }}</td>
+                <td>{{ user.last_name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.date_joined }}</td>
+                <td>
+                    <a href="{% url 'users_detail' user.pk %}">View</a> |
+                    <a href="{% url 'users_update' user.pk %}">Update</a> |
+                    <a href="{% url 'users_delete' user.pk %}">Delete</a>
+                </td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+
+<!-- PLAYERS TABLE -->
+<h2>Players List</h2>
+<h3>Total Players: {{ total_players }}</h3>
+<table id="players-table">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Team</th>
+            <th>Sport</th>
+            <th>League</th>
+            <th>Jersey Number</th>
+            <th>Actions</th>
+  
+        </tr>
+    </thead>
+    <tbody>
+    {% for user in players %}
+        <tr>
+            <td>{{ user.username }}</td>
+            <td>{{ user.first_name }}</td>
+            <td>{{ user.last_name }}</td>
+            <td>{{ user.team.team_name }}</td>
+            <td>{{ user.sport.sport_name }}</td>
+            <td>{{ user.league.league_name }}</td>
+            <td>{{ user.jersey_number }}</td>
+            <td>
+                <a href="{% url 'users_detail' user.pk %}">View</a> |
+                <a href="{% url 'users_update' user.pk %}">Update</a> |
+                <a href="{% url 'users_delete' user.pk %}">Delete</a>
+            </td>
+        </tr>
+    {% empty %}
+        <tr><td colspan="8">No players found.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+<!-- COACHES TABLE -->
+<h2>Coaches List</h2>
+<h3>Total Coaches: {{ total_coaches }}</h3>
+<table id="coaches-table">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Team</th>
+            <th>Sport</th>
+            <th>League</th>
+            <th>Coaching Experience</th>
+      
+            <th>Actions</th>
+     
+        </tr>
+    </thead>
+    <tbody>
+    {% for user in coaches %}
+        <tr>
+            <td>{{ user.username }}</td>
+            <td>{{ user.first_name }}</td>
+            <td>{{ user.last_name }}</td>
+            <td>{{ user.team.team_name }}</td>
+            <td>{{ user.sport.sport_name }}</td>
+            <td>{{ user.league.league_name }}</td>
+            <td>{{ user.coaching_experience }}</td>
+            <td>
+            
+                <a href="{% url 'users_detail' user.pk %}">View</a> |
+                
+                <a href="{% url 'users_update' user.pk %}">Update</a> |
+                <a href="{% url 'users_delete' user.pk %}">Delete</a>
+            </td>
+        </tr>
+    {% empty %}
+        <tr><td colspan="7">No coaches found.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}

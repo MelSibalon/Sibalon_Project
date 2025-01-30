@@ -1,0 +1,18 @@
+{% extends 'app/base.html' %}
+{% block content %}
+
+<div class="league-details">
+   <h1>{{ league.league_name }}</h1>
+   <p><strong>List of Sports:</strong></p>
+   <ul>
+     {% for sport in league.sport.all %}
+       <li>{{ sport.sport_name }}</li>
+     {% endfor %}
+   </ul>
+   <p><strong>Location:</strong> {{ league.location }}</p>  
+   <p><strong>Start Date:</strong> {{ league.start_date }}</p>
+   <p><strong>End Date:</strong> {{ league.end_date }}</p>
+</div>
+<a href="{% url 'position_update' league.pk %}">Edit league</a>
+<a href="{% url 'position_delete' league.pk %}">Delete league</a>
+{% endblock content %}

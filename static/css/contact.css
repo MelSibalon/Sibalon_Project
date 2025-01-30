@@ -1,0 +1,90 @@
+/* Contact section container */
+.contact-section {
+    padding: 40px 20px;
+    background: rgba(255, 255, 255, 0.1); /* Light transparent background */
+    backdrop-filter: blur(10px); /* Glass blur effect */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Contact info list */
+.contact-info ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.contact-info li {
+    margin: 10px 0;
+    color: white;
+}
+
+/* Contact form styling */
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Labels */
+.contact-form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: white;
+}
+
+/* Inputs & textarea with glass effect */
+.contact-form input,
+.contact-form textarea {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: white;
+}
+
+/* Placeholder styling for better contrast */
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Submit button */
+.contact-form button {
+    background: rgba(76, 175, 80, 0.8);
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease;
+}
+
+.contact-form button:hover {
+    background: rgba(69, 160, 73, 0.9);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .contact-section {
+        padding: 20px;
+    }
+
+    .contact-form form {
+        max-width: 100%;
+        padding: 15px;
+    }
+}

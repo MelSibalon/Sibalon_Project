@@ -1,0 +1,36 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block content %}
+<form action="{% url 'leagues_create' %}" method="post" class="league-form">
+    {% csrf_token %}
+    <h1>New League</h1>
+
+    <div class="form-group">
+        <label for="id_league_name">League Name</label>
+        {{ form.league_name }}  <!-- League Name -->
+    </div>
+
+    <div class="form-group">
+        <label for="id_sport">Sports</label>
+        {{ form.sport }}  <!-- Multiple sports selection as checkboxes -->
+    </div>
+
+    <div class="form-group">
+        <label for="id_location">Location</label>
+        {{ form.location }}  <!-- Location text input -->
+    </div>
+
+    <div class="form-group">
+        <label for="id_start_date">Start Date</label>
+        <input type="date" name="start_date" id="id_start_date" class="form-control"> <!-- Start date picker -->
+    </div>
+
+    <div class="form-group">
+        <label for="id_end_date">End Date</label>
+        <input type="date" name="end_date" id="id_end_date" class="form-control"> <!-- End date picker -->
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+{% endblock content %}

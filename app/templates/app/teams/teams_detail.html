@@ -1,0 +1,19 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+{% for team in teams %}
+<div class="team-entry glass-effect">
+   <h1 class="section-title">Teams</h1>
+    <h2 class="team-name"><a href="{% url 'teams_detail' team.pk %}">{{ team.team_name }}</a></h2>
+    <p><strong>Coach:</strong> {{ team.coach }}</p>
+    <p><strong>Sport:</strong> {{ team.sport.sport_name }}</p>
+    <p><strong>League:</strong> {{ team.league.league_name }}</p>
+</div>
+{% endfor %}
+
+<a href="{% url 'dashboard' %}" class="back-link">Back to Dashboard</a>
+
+{% endblock content %}

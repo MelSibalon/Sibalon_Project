@@ -1,0 +1,46 @@
+{% load static %}
+{% block content %}
+<h1>Leagues Management</h1>
+   <table>
+      <thead>
+          <tr>
+              <th>League Name</th>
+              <th>Sport</th>
+              <th>Location</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+      
+              <th>Action</th>
+
+          </tr>
+      </thead>
+      <tbody>
+      {% for league in leagues %}
+          <tr>
+              <td>{{ league.league_name }}</td>
+              <td>
+                 {% for sport in league.sport.all %}
+                    {{ sport.sport_name }}
+                    {% if not forloop.last %}, {% endif %}
+                 {% empty %}
+                    No sports available
+                 {% endfor %}
+              </td>
+              <td>{{ league.location }}</td>
+              <td>{{ league.start_date }}</td>
+              <td>{{ league.end_date }}</td>
+              
+              <td><a href="{% url 'leagues_detail' league.id %}">View</a>
+              {% if user.role == 'admin' or user.is_superuser%}
+              <a href="{% url 'leagues_update' league.id %}">Update</a>
+                <a href="{% url 'leagues_delete' league.id %}">Delete</a>
+            </td>
+              {% endif %}
+          </tr>
+      {% endfor %}
+      </tbody>
+  </table>
+  {% if user.role == 'admin' or user.is_superuser%}
+   <a href="{% url 'leagues_create' %}">+ New League</a>
+   {% endif %}
+{% endblock content %}

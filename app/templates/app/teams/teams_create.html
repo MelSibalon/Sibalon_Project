@@ -1,8 +1,9 @@
 {% extends 'app/base.html' %}
 {% load static %}
 {% block content %}
-  <h1>New Sport</h1>
-     <form action="{% url 'ms_create' %}" method="post">
+  
+     <form action="{% url 'teams_create' %}" method="post" class="form-container">
+      <h1>New Team</h1>
         {% csrf_token %}
         {{form.as_p}}
         <input type="submit" value="Save">

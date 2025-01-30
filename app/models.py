@@ -1,17 +1,34 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.conf import settings
+from accounts.models import CustomUser
+
+SPORT_ICONS = {
+    "Football": "icons/football.png",
+    "Basketball": "icons/basketball.png",
+    "Tennis": "icons/tennis.png",
+    "Baseball": "icons/baseball.png",
+}
 
 class Sport(models.Model):
     sport_name = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
     rules = models.TextField(blank=True, null=True)
+    history = models.TextField(blank=True, null=True)
+    icon_path = models.CharField(max_length=255, blank=True)  # Local file path
+
+    def save(self, *args, **kwargs):
+        # Automatically assign the local icon path based on sport name
+        if not self.icon_path and self.sport_name in SPORT_ICONS:
+            self.icon_path = SPORT_ICONS[self.sport_name]
+        super().save(*args, **kwargs)
     
-    def __str__(self):
+    def __str__(self):  
         return self.sport_name
     
     def get_absolute_url(self):
-        return reverse("ms_detail", kwargs={"pk": self.pk})
+        return reverse("sports_detail", kwargs={"pk": self.pk})
 
 
 class Position(models.Model):
@@ -20,80 +37,52 @@ class Position(models.Model):
 
     def __str__(self):
         return f"{self.position_name} in {self.sport.sport_name}"
-
-
+    
 class League(models.Model):
     league_name = models.CharField(max_length=100)
-    sport = models.ForeignKey(Sport, on_delete=models.CASCADE, related_name="leagues")
+    sport = models.ManyToManyField(Sport, related_name="leagues")
     location = models.CharField(max_length=100)
     start_date = models.DateField()
     end_date = models.DateField()
 
     def __str__(self):
         return self.league_name
-
+    
+    def get_absolute_url(self):
+        return reverse("leagues_detail", kwargs={"pk": self.pk})
 
 class Team(models.Model):
     team_name = models.CharField(max_length=100)
-    coach = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="coached_teams")
+    coach = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True, related_name="coached_teams")
     sport = models.ForeignKey(Sport, on_delete=models.CASCADE, related_name="teams")
     league = models.ForeignKey(League, on_delete=models.CASCADE, related_name="teams")
 
     def __str__(self):
         return self.team_name
     
-class Player(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="player_profile")
-    team = models.ForeignKey(Team, on_delete=models.SET_NULL, null=True, related_name="players")
-    sport = models.ForeignKey(Sport, on_delete=models.CASCADE, related_name="players")
-    position = models.ForeignKey(Position, on_delete=models.SET_NULL, null=True, related_name="players")
-    jersey_number = models.IntegerField(default=0)
-
-
-    def __str__(self):
-        return self.user.first_name, self.user.last_name
-
+    def get_absolute_url(self):
+        return reverse('teams_detail', kwargs={'pk': self.pk})
+    
 
 class Match(models.Model):
-    league = models.ForeignKey(League, on_delete=models.CASCADE, related_name="matches")
-    team1 = models.ForeignKey(Team, on_delete=models.CASCADE, related_name="matches_as_team1")
-    team2 = models.ForeignKey(Team, on_delete=models.CASCADE, related_name="matches_as_team2")
-    sport = models.ForeignKey(Sport, on_delete=models.CASCADE, related_name="matches")
+    league = models.ForeignKey(League, on_delete=models.CASCADE)
+    team1 = models.ForeignKey(Team, related_name='team1_matches', on_delete=models.CASCADE)
+    team2 = models.ForeignKey(Team, related_name='team2_matches', on_delete=models.CASCADE)
+    sport = models.ForeignKey(Sport, on_delete=models.CASCADE)
     date = models.DateTimeField()
-    location = models.CharField(max_length=100)
+    location = models.CharField(max_length=255)
 
     def __str__(self):
         return f"{self.team1} vs {self.team2} - {self.date.strftime('%Y-%m-%d')}"
+    
     class Meta:
-            verbose_name_plural = "Matches"
-
+        verbose_name_plural = "Matches"
 
 class Registration(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="registrations")
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="registrations")
     league = models.ForeignKey(League, on_delete=models.CASCADE, related_name="registrations")
     sport = models.ForeignKey(Sport, on_delete=models.CASCADE, related_name="registrations")
     registration_date = models.DateTimeField(auto_now_add=True)
-
+    
     def __str__(self):
         return f"{self.user.username} registered for {self.league.league_name}"
-
-
-class Role(models.Model):
-    ROLE_CHOICES = [
-        ('Player', 'Player'),
-        ('Coach', 'Coach'),
-    ]
-
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="role")
-    role = models.CharField(max_length=10, choices=ROLE_CHOICES)
-
-    def __str__(self):
-        return f"{self.user.username} - {self.role}" 
-    
-class Coach(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="coach_profile")
-
-    def __str__(self):
-        return f"Coach {self.user.username}"
-    class Meta:
-            verbose_name_plural = "Coaches"

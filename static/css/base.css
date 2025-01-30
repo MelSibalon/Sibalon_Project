@@ -1,20 +1,292 @@
+body {
+  background-color: #090909; /* Fallback solid color */
+  background-image: url("/static/images/exclusive-paper.png"), 
+                    linear-gradient(to bottom, #000000, #000000);
+  background-blend-mode: normal; /* Keeps the image visible */
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  color: white;
+}
+
+
 header {
-    background-color: #333; /* Dark background */
-    padding: 10px 20px; /* Padding for spacing */
-    display: flex; /* Flexbox for horizontal layout */
-    justify-content: space-around; /* Space between links */
-    align-items: center; /* Center vertically */
+    background-color: #0d0d0d;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
 }
 
 header a {
-    color: white; /* White text */
-    text-decoration: none; /* Remove underline */
-    font-size: 18px; /* Font size */
-    padding: 8px 12px; /* Add padding around links */
-    border-radius: 4px; /* Rounded corners */
-    transition: background-color 0.3s ease; /* Smooth hover effect */
+    color: white;
+    text-decoration: none;
+    font-size: 25px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    border: none; /* Removed border for navbar links */
 }
 
 header a:hover {
-    background-color: #575757; /* Change background on hover */
+    background-color: #575757;
+}
+
+.header-title {
+    flex: 1;
+}
+
+.header-title h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.header-title h1 a {
+    color: white;
+    text-decoration: none;
+}
+
+.header-title h1 a:hover {
+    color: #ddd;
+}
+
+.header-nav {
+    flex: 2;
+    text-align: center;
+}
+
+.header-auth {
+    flex: 1;
+    text-align: right;
+}
+
+.header-auth p {
+    display: inline;
+    margin-right: 10px;
+    color: white;
+}
+
+.header-auth a {
+    margin-left: 10px;
+}
+
+/* MS logo */
+.mslogo {
+  height: 50%;
+  width: auto;
+  align-items: center;
+  border-radius: 10%;
+}
+
+/* General container setup */
+.container {
+  position: relative;
+  top: -50px; /* Move the container up */
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 15px;
+  justify-content: center;
+  padding-top: 0;
+  margin: 0;
+  overflow: hidden; /* Prevent unnecessary scroll */
+}
+
+/* Left section (box-30) */
+.box-30 {
+  width: 100%;
+  max-width: 400px; /* Make box-30 larger */
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: rgba(13, 13, 13, 0.6); /* Glass-like color matching sidebar */
+  backdrop-filter: blur(15px); /* Stronger blur for the glass effect */
+  border-radius: 12px; /* Rounded corners */
+  margin-bottom: 20px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Stronger shadow for depth */
+  color: white; /* White text for readability */
+  text-align: center;
+  margin-right: 20px; /* Space between box-30 and box-70 */
+}
+/* Right section (box-70) */
+.box-70 {
+  width: 1000px; /* Fixed width */
+  height: 600px;  /* Fixed height */
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: rgba(13, 13, 13, 0.6); /* Glass-like background matching box-30 */
+  backdrop-filter: blur(15px); /* Apply similar blur effect */
+  border-radius: 12px; /* Rounded corners */
+  margin-bottom: 20px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  margin-left: 20px; /* Adds space between box-30 and box-70 */
+  color: white; /* White text for readability */
+  overflow: auto; /* Allows scrolling if content overflows */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .box-70 {
+    width: 90%; /* Adjust width to fit smaller screens */
+    height: auto; /* Allow flexible height */
+  }
+}
+
+/* Logo inside box-30 */
+.mslogo {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Featured sports grid becomes scrollable if there are too many sports */
+.sports-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-height: 400px; /* Set a max height */
+  overflow-x: auto; /* Allows scrolling */
+}
+
+/* Ensure the sports grid does not expand too much */
+.sport-box {
+  text-align: center;
+  padding: 10px;
+  border-radius: 8px;
+  background: rgba(162, 162, 162, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Styling for buttons in box-30 (Sign In and Log In) */
+.glass-button {
+  padding: 10px 20px; /* Make the buttons bigger */
+  font-size: 22px; /* Increase font size */
+  background-color: rgba(73, 132, 160, 0.8);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, border-color 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+#glass-button{
+  background-color: rgba(160, 73, 73, 0.8);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+}
+
+.glass-button:hover {
+  background-color: rgba(151, 42, 42, 0.8);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Text and links */
+h1, h3 {
+  color: white; /* White color for better contrast on the dark glass background */
+}
+
+a {
+  color: #b8d8e3; /* Light color for links */
+  text-decoration: none;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.2); /* Glass-like background */
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+a:hover {
+  text-decoration: underline;
+  background-color: rgba(73, 132, 160, 0.8); /* Glass-like hover effect */
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+  .sports-grid {
+      grid-template-columns: 1fr; /* Stack sports grid on smaller screens */
+  }
+
+  .box-30, .box-70 {
+      width: 100%;
+      max-width: none;
+  }
+
+  .bottom-right {
+      flex-direction: column;
+  }
+
+  .bottom-left, .bottom-right-right {
+      width: 100%;
+      margin-bottom: 20px;
+  }
+}
+.matches-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center; /* Centers content horizontally */
+  gap: 20px;
+  width: 90%; /* Keeps it responsive */
+  max-width: 100%; /* Prevents it from becoming too wide */
+  height: 40%; /* Fixed height */
+  padding: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.5); /* Semi-transparent white border */
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  overflow: auto; /* Enables scrolling if content exceeds the height */
+  margin-left: 50px;
+  margin-top: -50px;
+  background-color: rgba(13, 13, 13, 0.6); /* Glass-like color matching sidebar */
+  
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .matches-container {
+    width: 90%;  /* Adjust width on smaller screens */
+    height: auto; /* Allow height to adjust dynamically */
+    flex-direction: column; /* Stack items vertically on small screens */
+    align-items: stretch; /* Ensure full width on small screens */
+  }
+}
+
+
+/* League & Match Boxes */
+.league-box, .match-box {
+  width: 100%;
+  max-width: 600px;
+  background-color: rgba(20, 20, 20, 0.8);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: white;
+  text-align: center;
+}
+
+/* List styles */
+.matches-container ul {
+  list-style: none;
+  padding: 0;
+}
+
+.matches-container ul li {
+  padding: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.matches-container ul li:last-child {
+  border-bottom: none;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+  .matches-container {
+      width: 90%;
+  }
 }

@@ -1,0 +1,22 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+   <div class="sport-entry glass-effect">
+      <h2 class="sport-title"><a href="">{{ sport.sport_name }}</a></h2>
+      <p class="sport-description"><strong>Description:</strong> {{ sport.description }}</p>
+      <p class="sport-rules"><strong>Rules:</strong> {{ sport.rules }}</p>
+      <p class="sport-history"><strong>History:</strong> {{ sport.history }}</p>
+   
+   {% if user.role == 'admin' %}
+   <div class="admin-actions">
+      <a href="{% url 'sports_update' sport.pk %}" class="">Edit Sport</a>
+      <a href="{% url 'sports_delete' sport.pk %}" class="">Delete Sport</a>
+   </div>
+   {% endif %}
+   <!-- Back button to dashboard -->
+   <div class="back-button">
+      <a href="{% url 'dashboard' %}" class="back-link">Back to Dashboard</a>
+   </div>
+</div>
+
+{% endblock content %}

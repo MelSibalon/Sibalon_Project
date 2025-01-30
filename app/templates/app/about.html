@@ -1,7 +1,70 @@
 {% extends 'app/base.html' %}
-
+{% load static %}
 {% block content %}
+    <div class="about-container">
+        <div class="about-grid">
+            <section class="about-section mission">
+                <h2>Mission</h2>
+                <p>Our mission is to simplify the process of organizing and participating in sports events. We aim to create a community-driven space where everyone can stay connected and involved. Whether you’re a player looking for a team or a coach managing a league, our platform helps you stay on top of the game. We strive to break down barriers to sports participation by providing accessible tools for all levels of athletes.</p>
+                <p>Our platform was created with the goal of enhancing sports engagement by giving everyone the opportunity to connect, organize, and compete in a way that’s both enjoyable and meaningful.</p>
+            </section>
 
-    <h1>ABout</h1>
-    
-{% endblock content %}
+            <section class="about-section features">
+                <h2>Key Features</h2>
+                <ul>
+                    <li><strong>Team Management:</strong> Easily create and manage your teams, track player information, and assign roles within your team.</li>
+                    <li><strong>Match Scheduling:</strong> Stay updated on upcoming games.</li>
+                    <li><strong>League Registration:</strong> Register your team for local or regional leagues.</li>
+                    <li><strong>Player Profiles:</strong> Build your own player profile.</li>
+                <p>These features are designed to make sports management simpler and more accessible to players, coaches, and fans alike.</p>
+            </section>
+        </div>
+
+        <section class="about-section why-choose">
+            <h2>Why Choose this Platform?</h2>
+            <p>Our platform is designed for athletes, coaches, and sports fans who want a simple and powerful tool for managing their sports activities. Our goal is to streamline the entire process of team management, match scheduling, and league registration.</p>
+            <p>We combine technology with a passion for sports to offer an intuitive experience that allows users to focus on what matters most: playing, coaching, and competing.</p>
+            <ul>
+                <li><strong>Seamless User Experience:</strong> We’ve made it easy to navigate and use our platform, whether you’re registering for a match or managing a team.</li>
+                <li><strong>Community Focused:</strong> Our platform is built around a strong community of athletes and coaches, so you’re never alone in your sports journey.</li>
+                <li><strong>Customizable Options:</strong> Adapt the platform to fit the specific needs of your team, sport, or league.</li>
+            </ul>
+        </section>
+        <section class="about-section team">
+            <h2>The Developer Behind this Project</h2>
+            <p>As the developer behind this platform, I am dedicated to improving the sports experience for everyone. With a passion for both technology and sports, I aimed to create a tool that makes sports management more accessible and enjoyable. My goal is to break down the barriers to sports participation and make it easier for players, coaches, and sports fans to stay connected.</p>
+            <p>This platform was designed with the users in mind, and I am constantly working on improving and adding new features to ensure a seamless and valuable experience for everyone.</p>
+            <h3>Core Values:</h3>
+            <ul>
+                <li><strong>Innovation:</strong> I continuously work to enhance the platform by adding new features to meet the ever-evolving needs of sports management.</li>
+                <li><strong>Community:</strong> I believe in fostering a strong community of athletes and coaches, ensuring that everyone feels supported and connected.</li>
+                <li><strong>Integrity:</strong> I am committed to transparency, fairness, and security to ensure that the platform is a trustworthy space for all users.</li>
+            </ul>
+        </section>
+        
+
+        <section class="about-section faq">
+            <h2>Frequently Asked Questions</h2>
+            <h3>How do I register a team?</h3>
+            <p>You can register a team by logging in to your account and visiting the 'Create a Team' section under the 'Teams' tab. Fill out the necessary details, and you’re ready to go!</p>
+
+            <h3>Can I join multiple leagues?</h3>
+            <p>Yes! You can join multiple leagues depending on your team's availability and your schedule.</p>
+
+            <h3>Is there a fee for using the platform?</h3>
+            <p>Our basic services are completely free. However, there may be a fee for premium features or league registrations. Please refer to the pricing page for more details.</p>
+
+            <h3>How can I get support if I have an issue?</h3>
+            <p>If you have any questions or issues, feel free to reach out to our support team via the 'Contact Us' page. We aim to respond to all inquiries within 24 hours.</p>
+        </section>
+
+        <section class="about-section contact">
+            <h2>Contact Us</h2>
+            <p>If you have any questions or need support, feel free to <a href="{% url 'contact' %}">contact us</a>. We are always here to help you with any issues or suggestions you may have.</p>
+        </section>
+
+        <footer class="about-footer">
+            <p>&copy; 2025 <img src="{% static 'images/favicon.ico' %}" alt="Logo"> MS SportGanizer. All rights reserved.</p>
+        </footer>
+    </div>
+{% endblock %}

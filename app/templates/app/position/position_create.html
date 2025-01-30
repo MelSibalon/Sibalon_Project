@@ -1,0 +1,12 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block content %}
+  <h1 class="section-title">New Position</h1>
+
+  <form action="{% url 'position_create' %}" method="post" class="form-container">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Save" class="submit-btn">
+  </form>
+{% endblock content %}

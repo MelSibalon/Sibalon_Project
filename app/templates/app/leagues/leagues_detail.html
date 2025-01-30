@@ -1,0 +1,21 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="league-details glass-effect">
+   <h1 class="league-title">{{ league.league_name }}</h1>
+   <p><strong>List of Sports:</strong></p>
+   <ul class="sports-list">
+     {% for sport in league.sport.all %}
+       <li>{{ sport.sport_name }}</li>
+     {% endfor %}
+   </ul>
+   <p><strong>Location:</strong> {{ league.location }}</p>  
+   <p><strong>Start Date:</strong> {{ league.start_date }}</p>
+   <p><strong>End Date:</strong> {{ league.end_date }}</p>
+</div>
+
+<div class="back-button">
+  <a href="{% url 'dashboard' %}" class="back-link">Back to Dashboard</a>
+</div>
+{% endblock content %}

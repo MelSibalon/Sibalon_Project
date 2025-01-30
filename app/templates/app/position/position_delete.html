@@ -1,0 +1,11 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+
+     <form action="{% url 'position_delete' object.pk %}" method="post" class="form-container">
+      <h1>Delete Position</h1>
+        {% csrf_token %}
+        <p>Are you sure you want to delete?</p>
+        <input type="submit" value="Confirm">
+     </form>
+{% endblock content %}

@@ -1,7 +1,40 @@
 {% extends 'app/base.html' %}
 {% load static %}
-{% block content %}
 
-    <h1>Home Page</h1>
+{% block content %}
+<div class="container">
+    <!-- Left Section (box-30) -->
+    <div class="box-30">
+        <h1>Welcome to MS SportOrganizer</h1>
+        <img src="{% static 'images/logo.png'%}" alt="logo" class="mslogo">
+        <p>Stay updated on your favorite sports, leagues, and matches!</p>
+        {% if user.is_authenticated %}
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="glass-button" id="glass-button">Log out</button>
+            </form>
+        {% else %}
+            <a href="{% url 'login' %}" class="glass-button">Log in</a>
+            <a href="{% url 'signup' %}" class="glass-button">Sign Up</a>
+        {% endif %}
+    </div>
+
+    <!-- Right Section (box-70) -->
+    <div class="box-70">
+        <!-- Featured Sports Section -->
+        <div class="featured-sports">
+            <h1>Featured Sports</h1>
+            <div class="sports-grid">
+                {% for sport in sports %}
+                    <div class="sport-box">
+                        <a href="{% url 'sports_detail' sport.id %}">
+                            <h3>{{ sport.sport_name }}</h3>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock content %}

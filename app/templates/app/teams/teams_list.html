@@ -1,0 +1,45 @@
+{% load static %}
+{% block content %}
+
+<h1>Teams</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Team Name</th>
+            <th>Sport</th>
+            <th>League</th>
+            <th>Coach</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for team in teams %}
+        <tr>
+            <td>{{ team.team_name }}</td>
+            <td>{{ team.sport.sport_name }}</td>  <!-- Accessing ForeignKey -->
+            <td>{{ team.league.league_name }}</td> <!-- Accessing ForeignKey -->
+            <td>
+                {% if team.coach %}
+                    {{ team.coach.username }}  <!-- Correct way to access coach's username -->
+                {% else %}
+                    No coach assigned
+                {% endif %}
+            </td> <!-- Accessing ForeignKey to User -->
+           
+            <td><a href="{% url 'teams_detail' team.pk %}">View</a>
+                {% if user.role == 'admin' or user.is_superuser%}
+            <a href="{% url 'teams_update' team.pk %}">Update</a>
+            <a href="{% url 'teams_delete' team.pk %}">Delete</a>
+            {% endif %}
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="7">No teams available.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% if user.role == 'admin' or user.is_superuser%}
+<a href="{% url 'teams_create' %}">+ Enter Team</a>
+{% endif %}
+{% endblock content %}

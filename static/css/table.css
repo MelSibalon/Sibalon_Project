@@ -1,0 +1,42 @@
+h1 {
+    color: #ffffff;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: rgba(255, 255, 255, 0.15);  /* Slightly transparent background for the glass effect */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);  /* Subtle shadow for the glass effect */
+    backdrop-filter: blur(10px);  /* Adds the blur effect to the background */
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);  /* Lighter border color for glass effect */
+}
+
+th {
+    background-color: rgba(44, 62, 80, 0.8);  /* Slightly transparent background */
+    color: white;
+}
+
+td {
+    color: #ffffff;
+}
+
+td a {
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    color: rgb(0, 0, 0);
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+td a:hover {
+    background-color: rgba(255, 255, 255, 0.3);  /* Light hover effect for links */
+}

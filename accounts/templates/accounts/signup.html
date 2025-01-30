@@ -1,0 +1,83 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+<form method="POST" action="{% url 'signup' %}" class="signup-form-container">
+    <h1>Sign Up Here</h1>
+    {% csrf_token %}
+
+    <div class="form-content">
+        <!-- Left Column -->
+        <div class="form-left">
+            <label for="id_first_name">First Name:</label> {{ form.first_name }}<br>
+            <label for="id_last_name">Last Name:</label> {{ form.last_name }}<br>
+            <label for="id_username">Username:</label> {{ form.username }}<br>
+            <label for="id_email">Email:</label> {{ form.email }}<br>
+            <label for="id_password1">Password:</label> {{ form.password1 }}<br>
+            <label for="id_password2">Confirm Password:</label> {{ form.password2 }}<br>
+        </div>
+
+        <!-- Right Column -->
+        <div class="form-right">
+            <label for="id_role">Role:</label> {{ form.role }}<br>
+
+            <div id="role-specific-fields">
+                <!-- Common Fields -->
+                <div id="common-fields">
+                    <label for="id_sport">Sport:</label> {{ form.sport }}<br>
+                    <label for="id_team">Team:</label> {{ form.team }}<br>
+                    <label for="id_league">League:</label> {{ form.league }}<br>
+                </div>
+
+                <!-- Player-Specific Fields -->
+                <div id="player-fields" style="display: none;">
+                    <label for="id_position">Position:</label> {{ form.position }}<br>
+                    <label for="id_jersey_number">Jersey Number:</label> {{ form.jersey_number }}<br>
+                </div>
+
+                <!-- Coach-Specific Fields -->
+                <div id="coach-fields" style="display: none;">
+                    <label for="id_coaching_experience">Coaching Experience:</label> {{ form.coaching_experience }}<br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button type="submit">Sign Up</button>
+</form>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var roleField = document.getElementById('id_role');
+        var playerFields = document.getElementById('player-fields');
+        var coachFields = document.getElementById('coach-fields');
+
+        if (!roleField) {
+            console.error("Role field not found! Check Django form.");
+            return;
+        }
+
+        function updateFormFields() {
+            var role = roleField.value;
+
+            if (role === 'player') {
+                playerFields.style.display = 'block';
+                coachFields.style.display = 'none';
+            } else if (role === 'coach') {
+                playerFields.style.display = 'none';
+                coachFields.style.display = 'block';
+            } else {
+                playerFields.style.display = 'none';
+                coachFields.style.display = 'none';
+            }
+        }
+
+        // Initialize
+        updateFormFields();
+
+        // Update on change
+        roleField.addEventListener('change', updateFormFields);
+    });
+</script>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block content %}
+<form method="post" action="{% url 'login' %}" class="loginform">  <!-- Updated to point to the custom login view -->
+    {% csrf_token %}
+    <div>
+        <h2>LOG IN</h2>
+        <label for="username">Username</label>
+        <input type="text" placeholder="Enter Username:" name="username" required>
+        <br>
+        <br>
+        <label for="password">Password</label>
+        <input type="password" placeholder="Enter Password:" name="password" required>
+    </div>
+    <button type="submit">Login</button>
+</form>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+<div class="league-details glass-effect">
+<h1>Match Details</h1 >
+<p><strong>League:</strong> {{ match.league.league_name }}</p>
+<p><strong>Teams:</strong> {{ match.team1.team_name }} vs {{ match.team2.team_name }}</p>
+<p><strong>Sport:</strong> {{ match.sport.sport_name }}</p>
+<p><strong>Date:</strong> {{ match.date }}</p>
+<p><strong>Location:</strong> {{ match.location }}</p>
+<a href="{% url 'matches_update' match.pk %}">Edit Match</a>
+<a href="{% url 'matches_delete' match.pk %}">Delete Match</a>
+</div>
+{% endblock content %}

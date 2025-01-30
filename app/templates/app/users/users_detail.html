@@ -1,0 +1,17 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+   <div class="user-details glass-effect">
+      <h1 class="user-title">User Details</h1>
+      <p class="user-info"><strong>Username:</strong> {{ user.username }}</p>
+      <p class="user-info"><strong>Email:</strong> {{ user.email }}</p>
+      <p class="user-info"><strong>First Name:</strong> {{ user.first_name }}</p>
+      <p class="user-info"><strong>Last Name:</strong> {{ user.last_name }}</p>
+      <p class="user-info"><strong>Role:</strong> {{ user.role }}</p>
+   </div>
+
+   <!-- Back Button Section -->
+   <div class="back-button">
+      <a href="{% url 'dashboard' %}" class="back-link">Back to Dashboard</a>
+   </div>
+{% endblock content %}
