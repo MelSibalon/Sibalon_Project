@@ -1,8 +1,9 @@
 {% extends 'app/base.html' %}
 {% load static %}
 {% block content %}
-<h1>Update Match</h1>
-<form method="post">
+
+<form method="post" class="form-container">
+    <h1>Update Match</h1>
     {% csrf_token %}
     <div>
         <label for="league">League:</label>
